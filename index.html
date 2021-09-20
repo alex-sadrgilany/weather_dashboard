@@ -20,28 +20,41 @@
 
     <main>
         <div class="container">
-            
-            <div class="col-md-4">
-                <div class="card">
-                    <h2 class="card-header text-uppercase">Search For A City</h2>
-                    <form id="city-form" class="card-body">
-                        <label class="form-label" for="city">City</label>
-                        <input name="city" id="city-input" type="text" autofocus="true" class="form-input"/>
-                        <button type="submit" class="btn">Get Weather!</button>
-                    </form>
+            <div class="row">
+                
+                <div class="col-md-4">
+                    <div class="card">
+                        <h2 class="card-header text-uppercase">Search For A City</h2>
+                        <form id="city-form" class="card-body">
+                            <label class="form-label" for="city">City</label>
+                            <input name="city" id="city-input" type="text" autofocus="true" class="form-input"/>
+                            <button type="submit" class="btn">Get Weather!</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div clas="col-md-8">
+                    <h2 id="city-header"></h2>
+                    <h3 class="" id="city-description"></h3>
+                    <div id="weather-snapshot">
+                        
+                    </div>
+
+                    <div class="row" id="weather-5day">
+                        <div class="card-deck">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div clas="col-md-8">
-                
-            </div>
-            
         </div>
     </main>
     <!-- Adding jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
+    <!-- Adding moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- Adding Local JS -->
     <script src="./assets/js/script.js"></script>
 </body>
