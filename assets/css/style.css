@@ -2,9 +2,6 @@
     width: 100%;
 }
 
-.row { 
-    justify-content: space-between;
-}
 
 #weather-results {
     border: 2px solid black;

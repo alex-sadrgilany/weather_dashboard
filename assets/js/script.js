@@ -5,7 +5,10 @@ var cityNameHeader = $("#city-header");
 var cityDescription = $("#city-description");
 var iconImgEl = $("#weather-icon");
 var cardDeckEl = $(".card-deck")
+var savedCitiesContainer = $("#saved-cities");
 var currentCity = "";
+
+var citiesSearchedArray = [];
 
 var formSubmitHandler = function(event) {
     event.preventDefault();
@@ -31,6 +34,7 @@ var getCityWeather = function(city) {
             if (response.ok) {
                 response.json().then(function(data) {
                     currentCity = data.name;
+                    saveCities(currentCity);
                     var cityLat = "lat=" + data.coord.lat;
                     var cityLon = "lon=" + data.coord.lon;
                     var exclusions = "&exclude=minutely,hourly";
@@ -91,19 +95,19 @@ var displayCityWeather = function(cityData) {
 
             if (weatherObject[key] === weatherUvi) {
                 if (weatherUvi < 3) {
-                    listItem.html(key + ": " + "<span id='uvi-green'>" + weatherObject[key] + "</span>");
+                    listItem.html(key + ": " + "<span id='uvi-green'>&nbsp&nbsp" + weatherObject[key] + "&nbsp&nbsp</span>");
                 }
                 else if (weatherUvi < 6 && weatherUvi >= 3) {
-                    listItem.html(key + ": " + "<span id='uvi-yellow'>" + weatherObject[key] + "</span>");
+                    listItem.html(key + ": " + "<span id='uvi-yellow'>&nbsp&nbsp" + weatherObject[key] + "&nbsp&nbsp</span>");
                 }
                 else if (weatherUvi < 8 && weatherUvi >= 6) {
-                    listItem.html(key + ": " + "<span id='uvi-orange'>" + weatherObject[key] + "</span>");
+                    listItem.html(key + ": " + "<span id='uvi-orange'>&nbsp&nbsp" + weatherObject[key] + "&nbsp&nbsp</span>");
                 }
                 else if (weatherUvi < 11 && weatherUvi >= 8) {
-                    listItem.html(key + ": " + "<span id='uvi-red'>" + weatherObject[key] + "</span>");
+                    listItem.html(key + ": " + "<span id='uvi-red'>&nbsp&nbsp" + weatherObject[key] + "&nbsp&nbsp</span>");
                 }
                 else {
-                    listItem.html(key + ": " + "<span id='uvi-violet'>" + weatherObject[key] + "</span>");
+                    listItem.html(key + ": " + "<span id='uvi-violet'>&nbsp&nbsp" + weatherObject[key] + "&nbsp&nbsp</span>");
                 }
                 
             }
@@ -118,6 +122,8 @@ var displayCityWeather = function(cityData) {
 }
 
 var displayFiveDayForecast = function(fiveDay) {
+
+    cardDeckEl.empty();
 
     for (i = 1; i < 6; i++) {
 
@@ -142,7 +148,7 @@ var displayFiveDayForecast = function(fiveDay) {
         var newWind = fiveDay.daily[i].wind_speed + " mph";
 
         var newWeatherObject = {
-            Temperature: newTemp,
+            Temp: newTemp,
             Humidity: newHumidity,
             Wind: newWind
         }
@@ -164,7 +170,30 @@ var displayFiveDayForecast = function(fiveDay) {
 }
 
 var saveCities = function(addCity) {
-    localStorage.setItem("City", addCity);
+    citiesSearchedArray = citiesSearchedArray || [];
+    if ($.inArray(addCity, citiesSearchedArray) !== -1) {
+        return;
+    }
+    else {
+        citiesSearchedArray.push(addCity);
+    }
+    localStorage.setItem("Searched Cities", JSON.stringify(citiesSearchedArray));
+    
 }
+
+var loadCities = function(loadCity) {
+    savedCitiesContainer.empty();
+    citiesSearchedArray = JSON.parse(localStorage.getItem("Searched Cities"));
+    
+    if (citiesSearchedArray != null) {
+        for (i = citiesSearchedArray.length - 1; i >= 0; i--) {
+            var newBtn = $("<button></button>");
+            newBtn.text(citiesSearchedArray[i]);
+            savedCitiesContainer.append(newBtn);
+        }
+    }
+}
+
+loadCities();
 
 cityFormEl.on("submit", formSubmitHandler);
