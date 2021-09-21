@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Adding Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
-    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <!-- Adding Local CSS -->
     <link rel="stylesheet" href="./assets/css/style.css"/>
     <title>Weather Dashboard</title>
@@ -34,10 +33,9 @@
                 </div>
 
                 <div clas="col-md-8">
-                    <h2 id="city-header"></h2>
-                    <h3 class="" id="city-description"></h3>
-                    <div id="weather-snapshot">
-                        
+                    <div class="row">
+                        <h2 id="city-header"></h2>
+                        <ul id="weather-snapshot"></ul>
                     </div>
 
                     <div class="row" id="weather-5day">
@@ -45,8 +43,10 @@
                             
                         </div>
                     </div>
+                    
                 </div>
             </div>
+
         </div>
     </main>
     <!-- Adding jQuery -->
