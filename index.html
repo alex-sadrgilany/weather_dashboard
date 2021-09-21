@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Adding Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
     <!-- Adding Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
     <!-- Adding Local CSS -->
@@ -13,20 +17,23 @@
 <body>
 
     <header class="jumbotron">
+        <div class="row" id="icon-decoration">
+        </div>
         <h1 class="display-4 text-center">Weather Dashboard</h1>
-        <p class="lead text-center">Whether you're traveling or spending the day outside, know the weather before you go!</p>
+        <p class="lead text-center">Whether you're traveling or spending the day outside, </br>
+            know the weather before you go!</p>
     </header>
 
     <main>
         <div class="container">
             <div class="row">
                 
-                <div class="col-md-4">
-                    <div class="card">
+                <div class="col-md-3">
+                    <div class="card" id="search-card">
                         <h2 class="card-header text-uppercase">Search For A City</h2>
                         <form id="city-form" class="card-body">
-                            <label class="form-label" for="city">City</label>
-                            <input name="city" id="city-input" type="text" autofocus="true" class="form-input"/>
+                            <input name="city" id="city-input" type="text" autofocus="true" class="form-input"
+                            placeholder="Enter A City Name"/>
                             <button type="submit" class="btn">Get Weather!</button>
                         </form>
                     </div>
@@ -34,12 +41,13 @@
                     </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-9">
+                    
                     <div>
                         <h2 id="city-header"></h2>
                         <ul id="weather-snapshot"></ul>
                     </div>
-                    
+
                     <div class="card-deck">
                     </div>
                 </div>

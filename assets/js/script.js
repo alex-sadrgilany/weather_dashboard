@@ -6,6 +6,7 @@ var cityDescription = $("#city-description");
 var iconImgEl = $("#weather-icon");
 var cardDeckEl = $(".card-deck")
 var savedCitiesContainer = $("#saved-cities");
+var iconDisplayEl = $("#display-icon");
 var currentCity = "";
 
 var citiesSearchedArray = [];
@@ -133,12 +134,12 @@ var displayFiveDayForecast = function(fiveDay) {
         cardDeckEl.append(newCard);
 
         var utcTime = fiveDay.daily[i].dt;
-        var convertedDate = moment.unix(utcTime).utc().format("L");
+        var convertedDate = moment.unix(utcTime).utc().format("ddd MM/DD");
         var newCardHeader = $("<h3></h3>");
         newCardHeader.text(convertedDate);
         newCard.append(newCardHeader);
 
-        var newIcon = $("<img>");
+        var newIcon = $("<img/>");
         var newIconCode = fiveDay.daily[i].weather[0].icon;
         var newIconUrl = "https://openweathermap.org/img/w/" + newIconCode + ".png";
         newIcon.attr("src", newIconUrl);
@@ -214,6 +215,32 @@ var buttonHandler = function(event) {
     }
 
 }
+
+// Randomize Array function
+var randomizeArray = function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+  
+      // swap elements array[i] and array[j]
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+var iconDecoration = function() {
+    iconCodeArray = ["01d", "01n", "02d", "02n", "03d", "04d", "09d", "10d", "10n", "11d", "13d", "50d"]
+    var randomizeIconArray = iconCodeArray.slice();
+    randomizeArray(randomizeIconArray);
+
+    for (i = 0; i < randomizeIconArray.length; i++) {
+        var newImgEl = $("<img/>")
+        randomIconUrl = "https://openweathermap.org/img/w/" + randomizeIconArray[i] + ".png";
+        newImgEl.attr("src", randomIconUrl);
+        $("#icon-decoration").append(newImgEl);
+        
+    }
+}
+
+iconDecoration();
 
 savedCitiesContainer.on("click", buttonHandler);
 

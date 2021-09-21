@@ -1,9 +1,102 @@
+/* Styles Applying to the entire site */
+body {
+     font-family: "Cabin", sans-serif;
+}
 
+input {
+    width: 100%;
+}
 
+button {
+    width: 100%;
+}
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    list-style: none;
+}
+
+/* END Styles Applying to the entire site */
+
+/* Site Header */
+
+.jumbotron {
+    background-color: #33658a;
+}
+
+.jumbotron .lead {
+    font-size: 22px;
+}
+
+#icon-decoration {
+    justify-content: center;
+}
+
+/* END Site Header */
+
+/* Input Card */
+
+#search-card {
+    background-color: #86bbd8;
+}
+
+#search-card h2 {
+    text-align: center;
+    font-size: 22px;
+}
+
+#search-card button {
+    margin-top: 10px;
+    background-color: #f4f1bb;
+}
+
+/* END Input Card */
+
+/* Saved Cities */
+
+#searched-city {
+    opacity: 70%;
+    margin-top: 10px;
+    background-color: #7ce577;
+    height: 40px;
+}
+
+#clear-cities {
+    opacity: 75%;
+    margin-top: 10px;
+    background-color: #c20114;
+    color: white;
+    height: 40px;
+}
+
+#searched-city:hover,
+#clear-cities:hover {
+    opacity: 100%;
+}
+
+/* END Saved Cities */
+
+/* Today's Weather Results */
+
+#city-header {
+    text-align: center;
+    font-size: 33px;
+    margin-bottom: 0px;
+}
+
+#weather-snapshot {
+    font-size: 22px;
+}
 
 #weather-results {
-    border: 2px solid black;
+    background-color: #f4f1bb;
+    padding-bottom: 10px;
 }
+
+/* UV Index Color Indicators */
 
 #uvi-green {
     background-color: green;
@@ -28,6 +121,22 @@
     color: white;
 }
 
-li {
-    list-style: none;
+/* END UV Index Color Indicators */
+
+/* END Today's Weather Results */
+
+/* 5 Day Forecast */
+
+.card-deck {
+    margin-top: 25px;
 }
+
+.card-deck .card {
+    background-color: #86bbd8;
+}
+.card-deck h3 {
+    text-align: center;
+    font-size: 22px;
+}
+
+/* END 5 Day Forecast */
