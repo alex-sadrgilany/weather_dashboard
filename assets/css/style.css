@@ -50,6 +50,10 @@ li {
 
 #search-card button {
     margin-top: 10px;
+    background-color: white;
+}
+
+#search-card button:hover {
     background-color: #f4f1bb;
 }
 

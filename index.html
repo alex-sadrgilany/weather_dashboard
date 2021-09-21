@@ -16,7 +16,9 @@
 </head>
 <body>
 
+    <!-- Jumbotron/Hero -->
     <header class="jumbotron">
+        <!-- Div that will be filled with Weather Icons for decoration -->
         <div class="row" id="icon-decoration">
         </div>
         <h1 class="display-4 text-center">Weather Dashboard</h1>
@@ -29,25 +31,28 @@
             <div class="row">
                 
                 <div class="col-md-3">
+                    <!-- Div with Search City Card -->
                     <div class="card" id="search-card">
                         <h2 class="card-header text-uppercase">Search For A City</h2>
+                        <!-- Form for entering a city -->
                         <form id="city-form" class="card-body">
                             <input name="city" id="city-input" type="text" autofocus="true" class="form-input"
                             placeholder="Enter A City Name"/>
                             <button type="submit" class="btn">Get Weather!</button>
                         </form>
                     </div>
+                    <!-- Div for the localstorage cities with buttons -->
                     <div id="saved-cities">  
                     </div>
                 </div>
 
                 <div class="col-md-9">
-                    
+                    <!-- Div with Main Weather Results for Today -->
                     <div>
                         <h2 id="city-header"></h2>
                         <ul id="weather-snapshot"></ul>
                     </div>
-
+                    <!-- Div with Future weather for the next 5 days forecast -->
                     <div class="card-deck">
                     </div>
                 </div>
