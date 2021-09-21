@@ -2,10 +2,37 @@
     width: 100%;
 }
 
-.row {
+.row { 
     justify-content: space-between;
 }
 
 #weather-results {
     border: 2px solid black;
+}
+
+#uvi-green {
+    background-color: green;
+    color: white;
+}
+
+#uvi-yellow {
+    background-color: yellow;
+}
+
+#uvi-orange {
+    background-color: orange;
+}
+
+#uvi-red {
+    background-color: red;
+    color: white;
+}
+
+#uvi-violet {
+    background-color: violet;
+    color: white;
+}
+
+li {
+    list-style: none;
 }

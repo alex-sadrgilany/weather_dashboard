@@ -4,6 +4,7 @@ var weatherContainerEl = $("#weather-snapshot");
 var cityNameHeader = $("#city-header");
 var cityDescription = $("#city-description");
 var iconImgEl = $("#weather-icon");
+var cardDeckEl = $(".card-deck")
 var currentCity = "";
 
 var formSubmitHandler = function(event) {
@@ -38,7 +39,8 @@ var getCityWeather = function(city) {
                         if (response.ok) {
                             response.json().then(function(data2) {
                                 console.log(data2);
-                                displayCityWeather(data2, city);
+                                displayCityWeather(data2);
+                                displayFiveDayForecast(data2);
                             })
                         }
                         else {
@@ -76,28 +78,93 @@ var displayCityWeather = function(cityData) {
 
     cityNameHeader.html(currentCity + " " + todayDate + " <img src='" + iconUrl + "' alt='Weather Icon'/> " + weatherDescription);
 
-    var newWeatherObject = {
+    var weatherObject = {
         Temperature: weatherTemp,
         Humidity: weatherHumidity,
         Wind: weatherWind,
         UVIndex: weatherUvi 
     }
 
-    for (var key in newWeatherObject) {
-        if (newWeatherObject.hasOwnProperty(key)) {
+    for (var key in weatherObject) {
+        if (weatherObject.hasOwnProperty(key)) {
             var listItem = $("<li></li>");
 
-            if (newWeatherObject[key] === weatherUvi) {
-                listItem.html(key + ": " + "<span id='uvi-color'>" + newWeatherObject[key] + "</span>");
+            if (weatherObject[key] === weatherUvi) {
+                if (weatherUvi < 3) {
+                    listItem.html(key + ": " + "<span id='uvi-green'>" + weatherObject[key] + "</span>");
+                }
+                else if (weatherUvi < 6 && weatherUvi >= 3) {
+                    listItem.html(key + ": " + "<span id='uvi-yellow'>" + weatherObject[key] + "</span>");
+                }
+                else if (weatherUvi < 8 && weatherUvi >= 6) {
+                    listItem.html(key + ": " + "<span id='uvi-orange'>" + weatherObject[key] + "</span>");
+                }
+                else if (weatherUvi < 11 && weatherUvi >= 8) {
+                    listItem.html(key + ": " + "<span id='uvi-red'>" + weatherObject[key] + "</span>");
+                }
+                else {
+                    listItem.html(key + ": " + "<span id='uvi-violet'>" + weatherObject[key] + "</span>");
+                }
+                
             }
             else {
-                listItem.text(key + ": " + newWeatherObject[key]);
+                listItem.text(key + ": " + weatherObject[key]);
             }
         
             weatherContainerEl.append(listItem);
         }
     }
 
+}
+
+var displayFiveDayForecast = function(fiveDay) {
+
+    for (i = 1; i < 6; i++) {
+
+        var newCard = $("<div></div>")
+        newCard.addClass("card");
+        cardDeckEl.append(newCard);
+
+        var utcTime = fiveDay.daily[i].dt;
+        var convertedDate = moment.unix(utcTime).utc().format("L");
+        var newCardHeader = $("<h3></h3>");
+        newCardHeader.text(convertedDate);
+        newCard.append(newCardHeader);
+
+        var newIcon = $("<img>");
+        var newIconCode = fiveDay.daily[i].weather[0].icon;
+        var newIconUrl = "https://openweathermap.org/img/w/" + newIconCode + ".png";
+        newIcon.attr("src", newIconUrl);
+        newCard.append(newIcon);
+
+        var newTemp = fiveDay.daily[i].temp.day + " °F";
+        var newHumidity = fiveDay.daily[i].humidity + " %";
+        var newWind = fiveDay.daily[i].wind_speed + " mph";
+
+        var newWeatherObject = {
+            Temperature: newTemp,
+            Humidity: newHumidity,
+            Wind: newWind
+        }
+
+        var newList = $("<ul></ul>")
+        for (var key in newWeatherObject) {
+            if (newWeatherObject.hasOwnProperty(key)) {
+                var newListItem = $("<li></li>")
+
+                newListItem.html(key + ": " + newWeatherObject[key]);
+
+                newList.append(newListItem);
+            }
+        }
+
+        newCard.append(newList);
+
+    }
+}
+
+var saveCities = function(addCity) {
+    localStorage.setItem("City", addCity);
 }
 
 cityFormEl.on("submit", formSubmitHandler);
