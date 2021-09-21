@@ -45,6 +45,7 @@ var getCityWeather = function(city) {
                                 console.log(data2);
                                 displayCityWeather(data2);
                                 displayFiveDayForecast(data2);
+                                loadCities(currentCity);
                             })
                         }
                         else {
@@ -188,12 +189,34 @@ var loadCities = function(loadCity) {
     if (citiesSearchedArray != null) {
         for (i = citiesSearchedArray.length - 1; i >= 0; i--) {
             var newBtn = $("<button></button>");
+            newBtn.attr("id", "searched-city");
             newBtn.text(citiesSearchedArray[i]);
             savedCitiesContainer.append(newBtn);
         }
+
+        var clearButton = $("<button></button>");
+        clearButton.text("Clear Searches");
+        clearButton.attr("id", "clear-cities");
+        savedCitiesContainer.append(clearButton);
     }
 }
 
-loadCities();
+var buttonHandler = function(event) {
+    var target = $(event.target);
+    if (target.is("#searched-city")) {
+        var newCitySearch = target.text();
+        getCityWeather(newCitySearch);
+    }
+    else if (target.is("#clear-cities")) {
+        savedCitiesContainer.empty();
+        localStorage.clear();
+        citiesSearchedArray = [];
+    }
+
+}
+
+savedCitiesContainer.on("click", buttonHandler);
 
 cityFormEl.on("submit", formSubmitHandler);
+
+loadCities();
