@@ -123,7 +123,6 @@ var displayCityWeather = function(cityData) {
                 else {
                     listItem.html(key + ": " + "<span id='uvi-violet'>&nbsp&nbsp" + weatherObject[key] + "&nbsp&nbsp</span>");
                 }
-                
             }
             else {
                 listItem.text(key + ": " + weatherObject[key]);
