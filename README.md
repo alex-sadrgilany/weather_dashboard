@@ -30,7 +30,13 @@ https://asadg7.github.io/weather_dashboard/
 
 ### Description
 
+This website servers as an easy to use weather dashboard. The user can search for any city and detailed weather for the current day will display. The weather displayed includes the temperature, humidity, wind, and uv index. The uv index is color coded to warn of any dangers in case of a very high uv index, ranging from green to violet. In addition, the next 5 days of weather will be displayed below in a snapshot style.
+
+Each city that is searched will also be saved and loaded to local storage. This allows for easy results if a user wants to check on a city they previously searched for. There is also an option to clear storage.
+
 ### Screenshots
+
+![](./assets/images/weather_dashboard_screenshot.PNG)
 
 ### License
 
