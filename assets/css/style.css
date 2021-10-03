@@ -143,4 +143,9 @@ li {
     font-size: 22px;
 }
 
+.five-day {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
 /* END 5 Day Forecast */

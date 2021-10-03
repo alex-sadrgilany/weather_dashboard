@@ -137,6 +137,11 @@ var displayFiveDayForecast = function(fiveDay) {
     // make sure the container is empty before printing to it
     cardDeckEl.empty();
 
+    var newHeader = $("<h3></h3>");
+    newHeader.text("5-Day Weather Forecast");
+    newHeader.addClass("five-day");
+    cardDeckEl.append(newHeader);
+
     // creating a for loop that will only grab the 5 days of data we need from the api results and printing them to the page
     for (i = 1; i < 6; i++) {
         var newCard = $("<div></div>")
